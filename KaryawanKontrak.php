@@ -14,10 +14,17 @@ class KaryawanKontrak extends Karyawan {
         $this->agensiPenyalur = $agensiPenyalur;
     }
 
+    // polimorfisme
     public function hitungGajiBersih() {
+        // Logika: Murni kehadiran x Gaji Dasar
+        return $this->hariKerjaMasuk * $this->gajiDasarPerHari;
     }
 
     public function tampilkanProfilKaryawan() {
+        echo "<b>[ KARYAWAN KONTRAK ]</b><br>";
+        echo "Nama: {$this->nama_karyawan}<br>";
+        echo "Departemen: {$this->departemen}<br>";
+        echo "Gaji Bersih: Rp " . number_format($this->hitungGajiBersih(), 0, ',', '.') . "<br><hr>";
     }
 }
 ?>
