@@ -8,9 +8,8 @@ $pass = '';
 $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 
 
-// ==========================================
-// 2. ABSTRACT CLASS KARYAWAN
-// ==========================================
+
+// ABSTRACT CLASS KARYAWAN
 abstract class Karyawan {
     // Properti terenkapsulasi (protected)
     protected $id_karyawan;
