@@ -1,34 +1,21 @@
 <?php
-$host = 'localhost';
-$db   = 'db_uas_pbo_ti1c_jhozyretnosari'; 
-$user = 'root';               
-$pass = '';                   
+// KONEKSI DATABASE (PDO)
+$host    = 'localhost';
+$db      = 'db_uas_pbo_ti1c_jhozyretnosari'; 
+$user    = 'root';               
+$pass    = '';                   
+$charset = 'utf8mb4';
 
-// Langsung melakukan koneksi tanpa pengaturan tambahan
-$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
-
-
-// ABSTRACT CLASS KARYAWAN
-abstract class Karyawan {
-    // Properti terenkapsulasi (protected)
-    protected $id_karyawan;
-    protected $nama_karyawan;
-    protected $departemen;
-    protected $hariKerjaMasuk;
-    protected $gajiDasarPerHari;
-
-    // Constructor
-    public function __construct($id_karyawan, $nama_karyawan, $departemen, $hariKerjaMasuk, $gajiDasarPerHari) {
-        $this->id_karyawan      = $id_karyawan;
-        $this->nama_karyawan    = $nama_karyawan;
-        $this->departemen       = $departemen;
-        $this->hariKerjaMasuk   = $hariKerjaMasuk;
-        $this->gajiDasarPerHari = $gajiDasarPerHari;
-    }
-
-    // Metode abstrak (tanpa isi/body)
-    abstract public function hitungGajiBersih();
-    abstract public function tampilkanProfilKaryawan();
+try {
+     $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 ?>
